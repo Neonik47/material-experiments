@@ -1,0 +1,8 @@
+%td= get_user(experiment.owner_id).username
+%td= get_user(experiment.confirmatory_id).username
+%td= check_box_tag('public', value = "1", checked = experiment.public, options = {:disabled => true})
+%td= check_box_tag('public', value = "2", checked = experiment.checked, options = {:disabled => true})
+%td= check_box_tag('public', value = "3", checked = experiment.confirmed, options = {:disabled => true})
+%td= link_to 'Show', experiment
+%td= link_to 'Edit', edit_experiment_path(experiment)
+%td= link_to 'Destroy', experiment, :confirm => 'Are you sure?', :method => :delete

@@ -1,0 +1,51 @@
+
+-#=cookies[:experiments].inspect
+=to_compare_count()
+%h1 Список экспериментов
+
+%table.table.table-condensed
+  %tr
+    %th №
+    %th Создан
+    %th Название
+    %th Категория
+    %th Создатель
+    %th Подтвеждающий
+    %th Публичный
+    %th Статус
+    %th
+
+  - @experiments.each_with_index do |experiment, i|
+    %tr
+      %th= i+1
+      %td= l experiment.created_at,format: :my
+      %td= link_to experiment.name, experiment, :class=>"btn"
+      %td= experiment.node.name
+      %td= experiment.owner.username
+      %td= experiment.confirmatory.username
+      %td= check_box_tag('public', value = "1", checked = (experiment.public==1 ? true : false), options = {:disabled => true})
+      %td.btn-info= experiment.human_status
+
+      %td
+        .btn-group
+          .btn.btn-primary.dropdown-toggle(data-toggle="dropdown")
+            Действия
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to_icon "icon-plus-sign", "К сравнению", set_cookie_experiment_path(experiment)
+            -if experiment.status <3
+              %li.divider
+              %li= link_to_icon "icon-edit", ' Ред.', edit_experiment_path(experiment)
+              %li= link_to_icon "icon-trash", ' Удалить', experiment, :confirm => 'Вы уверены?', :method => :delete
+            %li.divider
+            -if experiment.deleted?
+              %li= link_to_icon "icon-edit", ' Снять пом. уд.', set_undeleted_experiment_path(experiment)
+            -else
+              %li= link_to_icon "icon-edit", ' Пом. уд.', set_deleted_experiment_path(experiment)
+
+%br
+
+= link_to 'Новый эксперимент', new_experiment_path,:class=>"btn btn-primary"
+-#= link_to 'Новый эксперимент', new_experiment_path,:class=>"btn btn-inverse"
+= link_to 'Мне на проверку', checklist_experiments_path,:class=>"btn btn-info"
+-#= link_to 'Очистить', reset_cookie_experiments_path,:class=>"btn btn-warning"

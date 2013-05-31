@@ -1,0 +1,17 @@
+= form_for @experiments_impacts_param do |f|
+  -if @experiments_impacts_param.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@experiments_impacts_param.errors.count, "error")} prohibited this experiments_impacts_param from being saved:"
+      %ul
+        - @experiments_impacts_param.errors.full_messages.each do |msg|
+          %li= msg
+
+  =f.hidden_field :experiment_id
+  =f.hidden_field :impacts_param_id
+  .field
+    ="Значение параметра \"#{@experiments_impacts_param.impacts_param.name}\" (#{@experiments_impacts_param.impacts_param.unit}) для эксперимента \"#{@experiments_impacts_param.experiment.name}\""
+    %br
+    = f.text_field :value
+  .actions
+    = f.submit 'Сохранить',:class=>"green button"
+    = link_to 'Назад', @experiments_impacts_param.experiment,:class=>"blue button"

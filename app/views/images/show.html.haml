@@ -1,0 +1,11 @@
+%p#notice= notice
+
+%p
+  %b Эксперимент:
+  = @image.experiment.name
+%p
+  = image_tag @image.img.url(:original)
+  %br
+  = @image.img_file_name
+= link_to 'Редактировать', edit_image_path(@image),:class=> "blue button"
+= link_to 'Назад к эксперименту', @image.experiment,:class=> "blue button"

@@ -1,0 +1,15 @@
+= form_for @source do |f|
+  -if @source.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@source.errors.count, "error")} prohibited this source from being saved:"
+      %ul
+        - @source.errors.full_messages.each do |msg|
+          %li= msg
+  =f.hidden_field :experiment_id
+  %p="Для эксперимента \"#{@source.experiment.name}\""
+  .field
+    Исходный эксперимент
+    = f.select :source_experiment_id, Experiment.where("status = 3 AND id != ?",@source.experiment).all.map{|c| [c.name,c.id]}
+  .actions
+    = f.submit 'Сохранить',:class => "green button"
+    = link_to 'Назад', @source.experiment, :class => "blue button"

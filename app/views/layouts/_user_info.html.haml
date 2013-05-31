@@ -1,0 +1,18 @@
+-##user_info
+  -#.left
+    .button.white=link_to "Главная", root_path
+    -if logged_in?
+      -if current_user.admin?
+        .button.green=link_to "Пользователи", users_path
+    .button.blue=link_to "Материалы", materials_path
+    .button.blue=link_to
+    .button.blue=link_to
+  -#.right
+    -if logged_in?
+      =current_user.username
+      .button.red=link_to "Выход", logout_path
+    -else
+      .button.green=link_to "Войти", new_session_path
+
+      .button.green=link_to "Регистрация", new_user_path
+.clear

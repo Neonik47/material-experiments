@@ -1,0 +1,16 @@
+= form_for @element_experiment do |f|
+  - if @element_experiment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@element_experiment.errors.count, "error")} prohibited this element_experiment from being saved:"
+      %ul
+        - @element_experiment.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :element
+    = f.select :element_id, Element.all.map{|c| [c.name,c.id]}
+  .field
+    = f.label :experiment
+    = f.text_field :experiment
+  .actions
+    = f.submit 'Save'

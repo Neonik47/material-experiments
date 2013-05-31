@@ -1,0 +1,52 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+
+
+#password, #email {
+    margin: 4px;
+    padding: 4px;
+}
+
+#container{
+    width: 960px;
+    margin:0 auto;
+}
+
+nav{
+    width: 1180px;
+    margin:0 auto;
+}
+
+body{
+    /*background: url('http://st.gdefon.ru/wallpapers_original/wallpapers/243576_gradient_-shum_-oboina_2560x1600_(www.GdeFon.ru).jpg');*/
+
+    /*background: url('bg2.jpg');*/
+
+    /*background: url('http://st.gdefon.ru/wallpapers_original/wallpapers/295083_tekstura_metall_neobychno_oboi_3000x2000_(www.GdeFon.ru).jpg');*/
+    /*background: url('http://st.gdefon.ru/wallpapers_original/wallpapers/295079_tekstura_metall_neobychno_oboi_1400x1400_(www.GdeFon.ru).jpg');*/
+    /*background: url('http://st.gdefon.ru/wallpapers_original/wallpapers/295108_tekstura_metall_neobychno_oboi_2652x1675_(www.GdeFon.ru).jpg');*/
+    /*background: url('http://st.gdefon.ru/wallpapers_original/wallpapers/295102_tekstura_metall_neobychno_oboi_3000x2098_(www.GdeFon.ru).jpg');*/
+    /*background: url('http://st.gdefon.ru/wallpapers_original/wallpapers/336208_tekstura_dzhinsa_tkan_4773x3400_(www.GdeFon.ru).jpg');*/
+    /*background: url('http://st.gdefon.ru/wallpapers_original/wallpapers/420528_shelk_pokrytie_1680x1050_(www.GdeFon.ru).jpg');*/
+    /*background: url('http://st.gdefon.ru/wallpapers_original/wallpapers/446718_myagkie_legkie_svetlye_1680x1050_(www.GdeFon.ru).jpg');*/
+    /*background: url('http://st.gdefon.ru/wallpapers_original/wallpapers/446719_myagkie_legkie_svetlye_1680x1050_(www.GdeFon.ru).jpg');*/
+    background-size: cover;
+    color: #fdffff;
+    font: 14px/100% Helvetica, sans-serif;
+}
+
+div.clear{clear: both;}
+.container {
+    padding-top: 60px;
+}

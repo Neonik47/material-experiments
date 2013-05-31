@@ -1,0 +1,31 @@
+%p#notice= notice
+
+-n = @node.ancestors
+-c = @node.children
+
+-c_c = c.count
+%table{:border => "1px",:cellpadding => "10px"}
+  %tr
+    %th{:colspan => c_c, :align => "left"}
+      = link_to "Root", nodes_path, {:class => "button red"}
+      %br
+  -n.each do |anc|
+    %tr
+      %th{:colspan => c_c, :align => "left"}
+        = link_to anc.name, anc, :class => "button blue"
+        %br
+  %tr
+    %th{:colspan => c_c, :align => "left"}
+      .button.white= @node.name
+  %tr
+    -c.each do |child|
+      %th= link_to child.name, child, :class => "button blue"
+%br
+%br
+
+= link_to 'Создать эксперимент', new_experiment_path(:node_id => @node),:class=>"green button"
+-if current_user.moderator?
+  = link_to 'Доб. в категорию', new_node_path(:parent_id => @node),:class=>"green button"
+  = link_to 'Редактировать', edit_node_path(@node),:class=>"blue button"
+= link_to 'Назад', nodes_path,:class=>"blue button"
+

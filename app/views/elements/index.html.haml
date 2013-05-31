@@ -1,0 +1,25 @@
+%h1 Listing elements
+
+%table
+  %tr
+    %th Name
+    %th Sign
+    %th Atnum
+    %th Atm
+    %th
+    %th
+    %th
+
+  - @elements.each do |element|
+    %tr
+      %td= element.name
+      %td= element.sign
+      %td= element.atnum
+      %td= element.atm
+      %td= link_to 'Show', element
+      %td= link_to 'Edit', edit_element_path(element)
+      %td= link_to 'Destroy', element, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Element', new_element_path

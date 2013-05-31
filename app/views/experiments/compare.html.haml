@@ -1,0 +1,9 @@
+=@experiments.inspect
+=current_user.id
+%h1 Сравнение экспериментов
+
+%table.table.table-condensed
+  %tr
+    -@experiments.each do |experiment|
+      %th
+        =experiment.name

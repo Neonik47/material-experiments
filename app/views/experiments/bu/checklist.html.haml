@@ -1,0 +1,27 @@
+%h1 Список экспериментов мне на проверку
+
+%table
+  %tr
+    %th Название
+    %th Категория
+    %th Создатель
+    %th Подтвеждающий
+    %th Публичный
+    %th Статус
+    %th
+    %th
+
+  - @experiments.each do |experiment|
+    %tr
+      %td= link_to experiment.name, experiment, :class=>"green button"
+      %td= experiment.node.name
+      %td= experiment.owner.username
+      %td= experiment.confirmatory.username
+      %td= check_box_tag('public', value = "1", checked = experiment.public, options = {:disabled => true})
+      %td{:class => status(experiment)}= experiment.human_status
+      %td= link_to 'Ред.', edit_experiment_path(experiment),:class=>"blue button"
+      %td= link_to 'Удалить', experiment, :confirm => 'Вы уверены?', :method => :delete,:class=>"red button"
+
+%br
+
+= link_to 'К общему списку', experiments_path,:class=>"blue button"

@@ -1,0 +1,20 @@
+%h1 Список основных категорий
+
+%table
+  %tr
+    %th Название
+    %th
+    %th
+    %th
+
+  - @nodes.each do |node|
+    %tr
+      %td= link_to "#{node.name} [#{node.children.count} / #{node.experiments.count}]", node,:class=>"white button"
+      -if current_user.moderator?
+        %td= link_to 'Доб. в категорию', new_node_path(:parent_id => node),:class=>"green button"
+        %td= link_to 'Ред.', edit_node_path(node),:class=>"blue button"
+        %td= link_to 'Удалить', node, :confirm => 'Вы уверены?', :method => :delete,:class=>"red button"
+
+%br
+  -if current_user.moderator?
+    = link_to 'Новая категория', new_node_path,:class=>"green button"

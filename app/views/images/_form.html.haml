@@ -1,0 +1,3 @@
+= simple_form_for(@image, html: { multipart: true }) do |f|
+  = file_field_tag('item_attached_assets_asset', multiple: true, name: "item[attached_assets_attributes][][asset]")
+  = f.button :submit

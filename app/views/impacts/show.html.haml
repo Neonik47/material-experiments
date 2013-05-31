@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Название:
+  = @impact.name
+%p
+  %b Параметры:
+
+  %table
+    - @impact.impacts_params.each do |ip|
+      %tr
+        %td= "#{ip.name} (#{ip.unit})"
+        %td= link_to 'Ред.', edit_impacts_param_path(ip), :class=>"blue button"
+        %td= link_to 'X', ip, :confirm => 'Are you sure?', :method => :delete, :class=>"red button"
+
+= link_to 'Добавить параметр', new_impacts_param_path(:impact_id=>@impact),:class => "green button"
+= link_to 'Редактировать', edit_impact_path(@impact), :class=>"blue button"
+= link_to 'Назад', impacts_path, :class=>"blue button"

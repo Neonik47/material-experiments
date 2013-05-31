@@ -1,0 +1,26 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @element.name
+%p
+  %b Sign:
+  = @element.sign
+%p
+  %b Atnum:
+  = @element.atnum
+%p
+  %b Atm:
+  = @element.atm
+
+%p
+  %b Эксперименты:
+  .text-warning
+    Скрыть лишние эксперименты !!!!!!!!!!!!!!!!!!!
+  %table
+    -@element.experiments.each do |experiment|
+      %tr
+        %td=link_to experiment.name, experiment, :class => "white button"
+= link_to 'Edit', edit_element_path(@element)
+\|
+= link_to 'Back', elements_path

@@ -1,0 +1,10 @@
+.fields
+  .control
+    .span3
+      = f.text_field :name, :placeholder => "Название параметра"
+  .control
+    .span1
+      = f.text_field :unit, :placeholder => "Единица измерения"
+  .clear
+  =link_to_remove_fields "delete", f
+  .clear

@@ -1,0 +1,8 @@
+.fields
+  .control
+    .span3
+      =f.select :element_id, Element.all.map{|c| [c.name,c.id]}
+      =f.hidden_field :experiment_id
+  .clear
+  =link_to_remove_fields "Удалить", f
+  .clear

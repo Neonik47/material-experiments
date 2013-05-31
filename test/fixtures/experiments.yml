@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  owner_id: 1
+  confirmatory_id: 1
+  public: false
+  material_id: 1
+  impact_id: 1
+  description: MyText
+  checked: false
+  confirmed: false
+
+two:
+  owner_id: 1
+  confirmatory_id: 1
+  public: false
+  material_id: 1
+  impact_id: 1
+  description: MyText
+  checked: false
+  confirmed: false

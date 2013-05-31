@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Element:
+  = @element_experiment.element
+%p
+  %b Experiment:
+  = @element_experiment.experiment
+
+= link_to 'Edit', edit_element_experiment_path(@element_experiment)
+\|
+= link_to 'Back', element_experiments_path

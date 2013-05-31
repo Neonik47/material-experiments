@@ -1,0 +1,16 @@
+%h1 Список пользователей
+%table
+  %thead
+    %tr
+      -%w(id email name role status).each do |attr|
+        %th=User.human_attribute_name(attr)
+  %tbody
+    -@users.each do |user|
+      %tr
+        %td=user.id
+        %td=user.email
+        %td=user.username
+        %td
+          ="#{user.human_role} (#{user.role})"
+        %td
+          ="#{user.human_status} (#{user.status})"

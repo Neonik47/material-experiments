@@ -1,0 +1,19 @@
+%h1 Список методов воздействия
+
+%table
+  %tr
+    %th Название
+    %th
+    %th
+    %th
+
+  - @impacts.each do |impact|
+    %tr
+      %td= link_to impact.name, impact, :class=>"white button"
+      %td= link_to 'Редактировать', edit_impact_path(impact), :class=>"blue button"
+      %td= link_to 'Удалить', impact, :confirm => 'Are you sure?', :method => :delete, :class=>"red button"
+
+%br
+
+= link_to 'Новый метод воздействия', new_impact_path, :class=>"green button"
+

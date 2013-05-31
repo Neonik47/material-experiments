@@ -1,0 +1,35 @@
+%ul.nav
+  -if logged_in?
+    -menu_items.each do |item|
+      -if item[:admin].blank? || current_user.admin?
+        %li{class: controller_name==item[:name] ? 'active' : nil}=link_to item[:title],url_for(:controller=>item[:name])
+%ul.nav.pull-right
+  -if current_user
+    -count = to_compare_count()
+    -if count!=0
+      -experiments=exp_list()
+      %li
+        .btn-group
+          .btn.btn-warning.dropdown-toggle(data-toggle="dropdown")
+            ="К сравнению(#{count})"
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to_icon "icon-th-list", "Перейти к сравнению", compare_experiments_path
+            %li.divider
+            -experiments.each do |experiment|
+              %li= link_to_icon "icon-minus-sign", experiment.name, set_cookie_experiment_path(experiment)
+            %li.divider
+            %li= link_to_icon "icon-trash", "Очистить список", reset_cookie_experiments_path, :confirm => "Вы уверены, что хотите очистить список?"
+    %li
+      .btn-group
+        .btn.btn-inverse
+          =link_to current_user.username, users_path
+        .btn.btn-inverse.dropdown-toggle(data-toggle="dropdown")
+          %span.caret
+        %ul.dropdown-menu
+          %li=link_to "Выход",logout_path
+    -#%li.divider-vertical
+    -#
+  -else
+    %li=link_to "Вход", login_path
+    %li=link_to "Регистрация", new_user_path

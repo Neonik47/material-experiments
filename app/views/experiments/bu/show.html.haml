@@ -1,0 +1,92 @@
+%p
+  %b Название
+  =@experiment.name
+%p
+  %b Публичный доступ:
+  = check_box_tag('public', value = "1", checked = @experiment.public, options = {:disabled => true})
+%p
+  %b Категория
+  =link_to @experiment.node.name, @experiment.node,:class=>"button white"
+-ed = edit?(@experiment)
+%p
+  %b Исходные эксперименты:
+  %table
+    -@experiment.sources.each do |s|
+      %tr
+        %td=link_to s.source_experiment.name, s.source_experiment, :class => "white button"
+        -if ed>0
+          %td=link_to 'X', s, :confirm => 'Are you sure?', :method => :delete, :class => "red button"
+  -if ed>0
+    =link_to "+", new_source_path(:experiment_id => @experiment), :class => "green button"
+%p
+  %b Исходные материалы:
+  %table
+    -@experiment.elements.each do |element|
+      %tr
+        %td=link_to element.name, element, :class => "white button"
+        -if ed>0
+          %td=link_to 'X', element, :confirm => 'Are you sure?', :method => :delete, :class => "red button"
+  -if ed>0
+    =link_to "+", new_source_path(:experiment_id => @experiment), :class => "green button"
+%p
+  %b Метод воздействия:
+  = link_to @experiment.impact.name, @experiment.impact, :class => "white button"
+
+%table
+  -@experiment.impact.impacts_params.each do |anc|
+    -v=get_value(anc.id,@experiment.experiments_impacts_params)
+    %tr
+      %td
+        =anc.name
+      %td
+        -if v
+          =v.value
+        -else
+          =" --- "
+      %td
+        =anc.unit
+      -if ed>0
+        -if v
+          %td= link_to "Ред.", edit_experiments_impacts_param_path(v), :class=>"blue button"
+          %td= link_to "X", v, :confirm => 'Вы уверены?', :method => :delete, :class=>"red button"
+        -else
+          %td=link_to "+", new_experiments_impacts_param_path({:experiment_id => @experiment, :impacts_param_id => anc}), :class => "green button"
+          %td
+%p
+  %b Описание:
+  = @experiment.description
+
+%p
+  %b Изображения:
+  %table
+    -@experiment.images.each do |img|
+      %tr
+        %td= link_to (image_tag img.img.url(:small)),img
+        -if ed>0
+          %td= link_to "X",img , :confirm => 'Вы уверены?', :method => :delete,:class=>"red button"
+-if ed>0
+  %p
+    =link_to "Добавить изображение", new_image_path(:experiment_id => @experiment), :class=>"green button"
+
+%p
+  %b Владелец:
+  =@experiment.owner.username
+%p
+  %b Подтверждающий:
+  =@experiment.confirmatory.username
+
+%p
+  %b Статус:
+  = @experiment.human_status
+%p
+  -if ed>1
+    =link_to 'На проверку',check_experiment_path(@experiment), :confirm => 'Вы уверены?',:class => 'button blue'
+%p
+  -if ed>1
+    =link_to 'Подтвердить',accept_experiment_path(@experiment), :confirm => 'Вы уверены?',:class => 'button green'
+    =link_to 'Отклонить', decline_experiment_path(@experiment), :confirm => 'Вы уверены?',:class => 'button red'
+%p
+  -if ed>0
+    = link_to 'Редактировать', edit_experiment_path(@experiment),:class=> "blue button"
+  = link_to 'Назад', experiments_path,:class=> "blue button"
+

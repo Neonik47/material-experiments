@@ -1,0 +1,31 @@
+= form_for @experiment do |f|
+  -if @experiment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@experiment.errors.count, "error")} prohibited this experiment from being saved:"
+      %ul
+        - @experiment.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    Название
+    = f.text_field :name
+  .field
+    Публичный доступ
+    = f.check_box :public
+  .field
+    Описание
+    %br
+    = f.text_area :description
+  .field
+    Категория
+    = f.select :node_id, Node.all.map{|c| [c.name,c.id]}
+
+  .field
+    Метод воздействия
+    = f.select :impact_id, Impact.all.map{|c| [c.name,c.id]}
+  .field
+    Проверяющий
+    = f.select :confirmatory_id, User.where("(role = 1 OR role = 2) AND id != ?",current_user.id).all.map{|c| [c.username,c.id]}
+
+  .actions
+    = f.submit 'Сохранить', :class=>"green button"
+    = link_to 'Назад', experiments_path,:class=>"blue button"

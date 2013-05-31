@@ -1,0 +1,2 @@
+module ImpactsParamsHelper
+end
